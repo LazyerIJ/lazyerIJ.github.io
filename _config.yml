@@ -1,17 +1,16 @@
 # Site settings
-title:          Tale
-description:    "Minimal Jekyll theme for storytellers"
-baseurl:        "/tale"
-url:            "https://chesterhow.github.io"
+title:         Lazyer 
+description:    "LazyerIJ Blog"
+url:            "https://LazyerIJ.github.io"
 
 # Google Analytics
 google_analytics: UA—XXXXXXXX-X
 
 # Author
 author:
-  name:         Chester How
-  url:          https://chester.how
-  email:        chesterhow@gmail.com
+  name:         Lazyer IJ
+  url:          https://LazyerIJ.github.io
+  email:        spozam01@gmail.com
 
 # Build settings
 markdown:       kramdown
