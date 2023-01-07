@@ -13,13 +13,13 @@ AMI로 EC2 생성 시 용량 낮게 설정하여 새로운 AMI를 생성하려�
 
 따라서 용량을 낮춘 빈 볼륨을 생성하여 기존 EC2의 모든 데이터를 복사하는 방법으로 진행하려고 한다.
 
-
+<br>
 
 위 방법에 대한 설명은 [AWS EC2 루트 EBS 볼륨 용량 줄이기](https://stack.news/2020/11/23/aws-ec2-%EB%A3%A8%ED%8A%B8-ebs-%EB%B3%BC%EB%A5%A8-%EC%9A%A9%EB%9F%89-%EC%A4%84%EC%9D%B4%EA%B8%B0/) 해당 링크에 잘 설명되어있는데, 볼륨 포맷이 ext4 기준으로 설명되어있다. 나는 볼륨 포맷이 xfs 였기 때문에 포맷, 라벨 설정 등의 명령어가 조금 달랐다.
 
 xfs 포맷의 인스턴스 용량을 줄이는 법은 아래와 같다.
 
-
+<br>
 
 **[준비]**
 
@@ -32,7 +32,7 @@ xfs 포맷의 인스턴스 용량을 줄이는 법은 아래와 같다.
 
 작업을 편하게 진행하기 위해 public subnet에 ec2-main, ec2-old를 생성하였다.
 
-
+<br>
 
 작업 진행 단계는 아래와 같다.
 
@@ -44,13 +44,13 @@ xfs 포맷의 인스턴스 용량을 줄이는 법은 아래와 같다.
 
 4. 부트로더 설치
 
-
+<br>
 
 ### 1. VB 포맷
 
 아래 명령어들을 실행하기 위해 root 계정으로 접속한다.
 
-
+<br>
 
 ```shell
 $lsblk -f
@@ -69,7 +69,7 @@ xvdg
 
 xvdf, xvdg 중 어디에 마운트 되어있는지는 변경될 수 있는데, 여기서는 VA가 xvdg, VB가 xvdf에 마운트되었다. VB는 새로 생성한 볼륨으로 파티션 및 LABEL이 없는 것을 확인 할 수 있다.
 
-
+<br>
 
 새로 생성한 VB에 파티션을 생성해준다.
 
@@ -79,7 +79,7 @@ $ fdisk /dev/xvdf
 
 `n > p > enter > enter > enter > w` 순으로 입력하여 파티션을 생성 할 수 있다.
 
-
+<br>
 
 다시한번 확인해보면 파티션(xvdf1)이 생성되어 있는것을 확인 할 수 있다.
 
@@ -109,7 +109,7 @@ VA의 FSTYPE이 ext4라면 ext4로 포맷해주면 된다. 나는 xfs 포맷이�
 $mkfs -t xfs /dev/xvdf1
 ```
 
-
+<br>
 
 ### 2. 복사 및 부트로더 설치
 
@@ -142,7 +142,7 @@ $grub-install --root-directory=/target /dev/xvdf
 $umount /target /source
 ```
 
-
+<br>
 
 ### 3. VB UUID/LABEL 변경
 
@@ -204,9 +204,7 @@ xvdg
 └─xvdg1 xfs    /     417df3d5-5cb9-4b5e-a1a2-8475fff8efc9
 ```
 
-
-
-
+<br>
 
 
 볼륨 복사 작업은 모두 마무리 되었다!

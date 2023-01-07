@@ -17,7 +17,7 @@ Django에서 Model을 생성할 때, 동일한 스키마를 가진 테이블을 
 
 여러 테이블에 나누어 거래내역을 저장하는 것이 옳은 것인지는 아직 모르겠지만, 우선 Django Model 을 생성해보자.
 
-
+<br>
 
 **Transaction(거래내역) Table**
 
@@ -35,7 +35,7 @@ class AccountTransaction(models.Model):
 
 account_num 은 Account Table을 참조하는 왜래키이고, 기타 필드는 위와 같다.
 
-
+<br>
 
 동일한 구조를 가진 테이블을 생성해보려고 하니
 
@@ -64,7 +64,7 @@ class AccountTransaction2(models.Model):
 
 이렇게 생성해서는 영 마음에 들지 않는다. 테이블을 10개를 생성한다면 10개의 클래스를 각각 작성해야한다.
 
-
+<br>
 
 상속을 이용하여 생성을 위 코드를 조금 단순화하면 아래와 같다.
 
@@ -90,7 +90,7 @@ class AccountTransaction2(AccountTransaction):
         db_table = "account_transaction_2"
 ```
 
-
+<br>
 
 For 루프를 이용하여 지정된 숫자만큼 테이블을 자동으로 생성을 하기위해서 코드를 수정해 보았다.
 
@@ -118,7 +118,7 @@ for i in range(10):
     tables.append(create_account_transaction(i))
 ```
 
-
+<br>
 
 이 상태에서 makemigrations을 실행해보면..
 
@@ -129,7 +129,7 @@ for i in range(10):
 
 `AccountTransaction`를 상속받아 생성되는 클래스는 Model 이라는 model 1개 뿐이다.. Django에서 개별 클래스 모델을 생성하고 Meta class 데이터를 다르게 지정하더라도, `클래스명이 같으면 같은 model로 인식을 한다`.
 
-
+<br>
 
 서로 다른 클래스명을 가지는 클래스를 생성하여야하는데, `globals`를 이용하여 해결하였다.
 
@@ -157,13 +157,13 @@ bank\migrations\0001_initial.py
 
 ---
 
-
+<br>
 
 **globals**
 
 `globals`는 전역변수를, `locals`는 지역변수의 값들을 dictionary 형태로 return 하는데, dictionary와 같은 방식으로 값을 생성 할 수 있다. 선언된 변수, 정의된 클래스 모두 `globals`에서 확인 가능하다.
 
-
+<br>
 
 ```sh
 >>> globals()
@@ -184,9 +184,7 @@ bank\migrations\0001_initial.py
 <class '__main__.Test'>
 ```
 
-
-
-
+<br>
 
 ```python
 # a.py
