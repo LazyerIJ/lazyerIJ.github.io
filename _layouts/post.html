@@ -32,9 +32,20 @@ layout: default
   {{ content }}
 </div>
 
+<script src="https://utteranc.es/client.js"
+        repo="LazyerIJ/LazyerIJ.github.io"
+        issue-term="pathname"
+        label="comments"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<!--
 {% if page.comments %}
   {% include disqus_comments.html %}
 {% endif %}
+-->
 
 <div class="pagination">
   {% if page.next.url %}
