@@ -122,8 +122,13 @@ producer를 실행하면 콘솔에서 `>`가 표시되며 메시지를 입력할
 
 먼저 kafka를 실행하기 위해 파이썬 라이브러리를 설치해준다.
 
-```bash
+```
 pip install kafka-python
+```
+
+
+
+```bash
 from kafka import KafkaProducer, KafkaConsumer
 from json import dumps, loads
 
