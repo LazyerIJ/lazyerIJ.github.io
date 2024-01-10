@@ -66,7 +66,7 @@ class AccountTransaction2(models.Model):
 
 <br>
 
-상속을 이용하여 생성을 위 코드를 조금 단순화하면 아래와 같다.
+상속을 이용하여 아래와 같이 코드를 수정해보았다.
 
 ```python
 class AccountTransaction(models.Model):
@@ -92,7 +92,7 @@ class AccountTransaction2(AccountTransaction):
 
 <br>
 
-For 루프를 이용하여 지정된 숫자만큼 테이블을 자동으로 생성을 하기위해서 코드를 수정해 보았다.
+For 루프를 이용하여 지정된 숫자만큼 테이블을 자동으로 생성을 하기위해서 코드를 변경하였다.
 
 ```python
 class AccountTransaction(models.Model):
