@@ -126,8 +126,37 @@ for i in range(10):
   bank\migrations\0001_initial.py
     - Create model Model
 ```
+```python
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('django_server', '0001_auto_20221017_1430'),
+    ]
+
+    operations = [
+        migrations.CreateModel(
+            name='Model',
+            fields=[
+                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('tran_amt', models.PositiveBigIntegerField()),
+                ('tran_type', models.CharField(max_length=10)),
+                ('tran_detail', models.CharField(default='', max_length=100, null=True)),
+                ('tran_time', models.DateTimeField(auto_now_add=True)),
+            ],
+            options={
+                'db_table': 'account_transaction_9',
+            },
+        ),
+    ]
+
+```
 
 `AccountTransaction`를 상속받아 생성되는 클래스는 Model 이라는 model 1개 뿐이다.. Django에서 개별 클래스 모델을 생성하고 Meta class 데이터를 다르게 지정하더라도, `클래스명이 같으면 같은 model로 인식을 한다`.
+<br>
+`migrations.CreateModel` 클래스 내 `options`의 `db_table` 값을 보면, 가장 마지막으로 생성된 클래스의 `db_table` 값이 적용되어있다.
+<br>
+`CreateModel`의 `name` 필드와 `options` 필드 내 `db_Table` 값은 키-값과 같은 역할이 되는데, `name` 을 동일하게 설정하고 `db_table` 값을 다르게하거나, `db_table`을 동일하게 설정하고 name 값을 다르게 할 수 없다.
+
 
 <br>
 
